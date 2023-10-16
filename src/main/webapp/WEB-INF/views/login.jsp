@@ -11,18 +11,35 @@
     <link rel="stylesheet" href="<c:url value='../assets/style.css' />" />
 </head>
 <body>
+
+<c:if test="${not empty error}">
+    <div class="alert alert-danger">
+        <c:out value="${error}" />
+    </div>
+</c:if>
+<c:if test="${not empty success}">
+    <div class="alert alert-success">
+        <c:out value="${success}" />
+    </div>
+</c:if>
+
 <section class="wrapper active">
     <div class="form signup">
         <header>Signup</header>
-        <form action="auth/signup.do" method="post">
+        <form action="/auth/logup.do" method="post">
+            <div class="flex">
+                <label>
+                    <input type="text" name="firstname" placeholder="First name" required />
+                </label>
+                <label>
+                    <input type="text" name="lastname" placeholder="Last name" required />
+                </label>
+            </div>
             <label>
-                <input type="text" placeholder="Full name" required />
+                <input type="text" name="email" placeholder="Email address" class="w-full" required />
             </label>
             <label>
-                <input type="text" placeholder="Email address" required />
-            </label>
-            <label>
-                <input type="password" placeholder="Password" required />
+                <input type="password" name="password" placeholder="Password" class="w-full" required />
             </label>
             <div class="checkbox">
                 <input type="checkbox" id="signupCheck" />
@@ -34,12 +51,12 @@
 
     <div class="form login">
         <header>Login</header>
-        <form action="auth/login.do" method="post">
+        <form action="/auth/login.do" method="post">
             <label>
-                <input type="text" placeholder="Email address" required />
+                <input type="text" name="email" placeholder="Email address" class="w-full" required />
             </label>
             <label>
-                <input type="password" placeholder="Password" required />
+                <input type="password" name="password" placeholder="Password" class="w-full" required />
             </label>
             <a href="#">Forgot password?</a>
             <input type="submit" value="Login" />

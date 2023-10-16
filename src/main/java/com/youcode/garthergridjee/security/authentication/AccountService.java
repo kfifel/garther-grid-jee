@@ -1,0 +1,69 @@
+package com.youcode.garthergridjee.security.authentication;
+
+import com.youcode.garthergridjee.entities.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.Optional;
+
+public class AccountService {
+    private final AccountRepository accountRepository;
+    public AccountService() {
+        accountRepository = new AccountRepository();
+    }
+
+    public boolean registerUser(HttpServletRequest req, HttpServletResponse resp) {
+        User user = new User();
+        user.setLastName(req.getParameter("lastname"));
+        user.setFirstName(req.getParameter("firstname"));
+        user.setEmail(req.getParameter("email"));
+        user.setPassword(req.getParameter("password"));
+        user.setCreatedAt(new java.util.Date());
+        user.setUsername(user.getFirstName().charAt(0) + user.getLastName()); // username is the first letter of the first name and the last name
+
+        if (user.getUsername() == null || user.getUsername().isEmpty() || user.getUsername().isBlank()
+                || user.getEmail().isBlank() || user.getEmail().isEmpty()
+                || user.getPassword().isBlank() || user.getPassword().isEmpty() || user.getPassword().length() < 6
+        )
+            throw new IllegalArgumentException("Invalid user data");
+
+
+        if (accountRepository.findByEmail(user.getEmail()).isPresent())
+            return false;
+
+        String hashedPassword = hashPassword(user.getPassword());
+        user.setPassword(hashedPassword);
+
+        accountRepository.save(user);
+        return true;
+    }
+
+
+    private String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    public void login(HttpServletRequest req, HttpServletResponse resp) {
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        Optional<User> user = accountRepository.findByEmail(email);
+        if(user.isPresent()) {
+            if(BCrypt.checkpw(password, user.get().getPassword())) {
+                req.getSession().setAttribute("user", user.get());
+                try {
+                    resp.sendRedirect(req.getRequestURL().toString().replace("auth/login.do", "home"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        try {
+            resp.sendRedirect(req.getRequestURL().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+}
