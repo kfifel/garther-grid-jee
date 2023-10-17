@@ -1,8 +1,6 @@
 package com.youcode.garthergridjee.security.authentication;
 
 import com.youcode.garthergridjee.entities.User;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Optional;

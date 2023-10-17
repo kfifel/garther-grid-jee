@@ -3,7 +3,6 @@ package com.youcode.garthergridjee.servlet;
 import com.youcode.garthergridjee.entities.User;
 import com.youcode.garthergridjee.security.authentication.AccountService;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -45,12 +44,12 @@ public class AuthenticationController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) {
         var parametre = req.getParameter("khalid");
         System.out.println(parametre);
     }
 
-    private void handleLogup(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void handleLogup(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User user = new User();
         user.setLastName(req.getParameter("lastname"));
         user.setFirstName(req.getParameter("firstname"));
@@ -70,7 +69,7 @@ public class AuthenticationController extends HttpServlet {
         resp.sendRedirect(req.getContextPath()+"/auth/login.php");
     }
 
-    private void handleLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void handleLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         Optional<User> optionalUser = accountService.login(req.getParameter("email"), req.getParameter("password"));
 
