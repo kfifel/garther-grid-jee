@@ -26,6 +26,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
+
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
+
     public User(String username, String password, String firstName, String lastName, String email, Date createdAt) {
         this.username = username;
         this.password = password;
