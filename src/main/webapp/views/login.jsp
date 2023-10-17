@@ -8,25 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login & Signup Form</title>
-    <link rel="stylesheet" href="<c:url value='../assets/style.css' />" />
+    <link rel="stylesheet" href="<c:url value='/assets/style.css' />" />
 </head>
 <body>
 
-<c:if test="${not empty error}">
-    <div class="alert alert-danger">
-        <c:out value="${error}" />
-    </div>
-</c:if>
-<c:if test="${not empty success}">
-    <div class="alert alert-success">
-        <c:out value="${success}" />
-    </div>
-</c:if>
+<jsp:include page="shared/_handleAlerts.jsp"/>
 
 <section class="wrapper active">
     <div class="form signup">
         <header>Signup</header>
-        <form action="/auth/logup.do" method="post">
+        <form action="<c:url value='auth/logup.php'/>" method="post">
             <div class="flex">
                 <label>
                     <input type="text" name="firstname" placeholder="First name" required />
@@ -51,7 +42,7 @@
 
     <div class="form login">
         <header>Login</header>
-        <form action="/auth/login.do" method="post">
+        <form action="<c:url value='auth/login.php'/>" method="post">
             <label>
                 <input type="text" name="email" placeholder="Email address" class="w-full" required />
             </label>

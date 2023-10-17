@@ -13,14 +13,7 @@ public class AccountService {
         accountRepository = new AccountRepository();
     }
 
-    public boolean registerUser(HttpServletRequest req, HttpServletResponse resp) {
-        User user = new User();
-        user.setLastName(req.getParameter("lastname"));
-        user.setFirstName(req.getParameter("firstname"));
-        user.setEmail(req.getParameter("email"));
-        user.setPassword(req.getParameter("password"));
-        user.setCreatedAt(new java.util.Date());
-        user.setUsername(user.getFirstName().charAt(0) + user.getLastName()); // username is the first letter of the first name and the last name
+    public boolean registerUser(User user) {
 
         if (user.getUsername() == null || user.getUsername().isEmpty() || user.getUsername().isBlank()
                 || user.getEmail().isBlank() || user.getEmail().isEmpty()
@@ -44,26 +37,14 @@ public class AccountService {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    public void login(HttpServletRequest req, HttpServletResponse resp) {
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+    public Optional<User> login(String email, String password) {
         Optional<User> user = accountRepository.findByEmail(email);
         if(user.isPresent()) {
             if(BCrypt.checkpw(password, user.get().getPassword())) {
-                req.getSession().setAttribute("user", user.get());
-                try {
-                    resp.sendRedirect(req.getRequestURL().toString().replace("auth/login.do", "home"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                return user;
             }
         }
-
-        try {
-            resp.sendRedirect(req.getRequestURL().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        return Optional.empty();
 
     }
 }
