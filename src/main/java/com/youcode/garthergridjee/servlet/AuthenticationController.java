@@ -17,16 +17,15 @@ public class AuthenticationController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getRequestURL().toString();
 
-        if(path.contains("login.php"))
-            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
-
-        else if(path.contains("logout.php")) {
+        if(path.contains("logout.php")) {
              HttpSession session = req.getSession(false);
              if(session != null)
                  req.getSession().invalidate();
+            resp.sendRedirect(req.getContextPath()+"/auth/login.php");
         }
+        else
+            req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 
-        resp.sendRedirect(req.getContextPath()+"/auth/login.php");
     }
 
     @Override
@@ -49,7 +48,7 @@ public class AuthenticationController extends HttpServlet {
         System.out.println(parametre);
     }
 
-    private void handleLogup(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void handleLogup(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         User user = new User();
         user.setLastName(req.getParameter("lastname"));
         user.setFirstName(req.getParameter("firstname"));
@@ -66,22 +65,27 @@ public class AuthenticationController extends HttpServlet {
         } catch (IllegalArgumentException e) {
             req.setAttribute("error", e.getLocalizedMessage());
         }
-        resp.sendRedirect(req.getContextPath()+"/auth/login.php");
+        getServletContext()
+                .getRequestDispatcher("/WEB-INF/views/login.jsp")
+                .forward(req, resp);
     }
 
-    private void handleLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void handleLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         Optional<User> optionalUser = accountService.login(req.getParameter("email"), req.getParameter("password"));
 
         if(optionalUser.isPresent()) {
             req.getSession(true).setAttribute("user", optionalUser.get());
             req.setAttribute("success", "You are logged in successfully");
-            resp.sendRedirect(req.getContextPath());
-            //req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            getServletContext()
+                    .getRequestDispatcher("/WEB-INF/views/home.jsp")
+                    .forward(req, resp);
         } else {
             req.setAttribute("error", "Invalid credentials");
-            resp.sendRedirect(req.getContextPath()+"/auth/login.php");
-            //req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+            //resp.sendRedirect(req.getContextPath()+"/auth/login.php");
+            getServletContext()
+                    .getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    .forward(req, resp);
         }
     }
 

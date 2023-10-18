@@ -4,20 +4,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%@include file="shared/_header.jsp"%>
+
     <title>Login & Signup Form</title>
-    <link rel="stylesheet" href="<c:url value='/assets/style.css' />" />
 </head>
-<body>
+<body class="login-container">
 
 <jsp:include page="shared/_handleAlerts.jsp"/>
 
 <section class="wrapper active">
     <div class="form signup">
         <header>Signup</header>
-        <form action="<c:url value='auth/logup.php'/>" method="post">
+        <form action="<c:url value='/auth/logup.php'/>" method="post">
             <div class="flex">
                 <label>
                     <input type="text" name="firstname" placeholder="First name" required />
@@ -42,7 +40,7 @@
 
     <div class="form login">
         <header>Login</header>
-        <form action="<c:url value='auth/login.php'/>" method="post">
+        <form action="<c:url value='/auth/login.php'/>" method="post">
             <label>
                 <input type="text" name="email" placeholder="Email address" class="w-full" required />
             </label>

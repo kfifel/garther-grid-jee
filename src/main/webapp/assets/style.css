@@ -8,10 +8,16 @@
   sans-serif;
 }
 body {
+  position: relative;
+  min-height: 100vh;
+  background: #f0faff;
+}
+.login-container {
+  position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background: #f0faff;
 }
 .wrapper {
@@ -148,6 +154,12 @@ form input[type="submit"] {
   background: #FF6633;
   color: #fff;
   border: none;
+}
+.alert-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
 }
 .custom-alert {
   padding: 10px;
