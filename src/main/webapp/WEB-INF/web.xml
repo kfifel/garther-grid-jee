@@ -15,6 +15,7 @@
         <servlet-name>Home</servlet-name>
         <servlet-class>com.youcode.garthergridjee.servlet.HomeServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/home</url-pattern>

@@ -179,3 +179,17 @@ form input[type="submit"] {
   border-color: #d6e9c6;
   color: #3c763d;
 }
+.close-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  color: red;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px; /
+}
+
+.close-button:hover {
+  color: darkred;
+}
