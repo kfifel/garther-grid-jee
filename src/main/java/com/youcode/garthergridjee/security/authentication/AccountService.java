@@ -1,6 +1,7 @@
 package com.youcode.garthergridjee.security.authentication;
 
 import com.youcode.garthergridjee.entities.User;
+import com.youcode.garthergridjee.exception.EmailAlreadyExistException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Optional;
@@ -11,7 +12,7 @@ public class AccountService {
         accountRepository = new AccountRepository();
     }
 
-    public boolean registerUser(User user) {
+    public void registerUser(User user) throws EmailAlreadyExistException {
 
         if (user.getUsername() == null || user.getUsername().isEmpty() || user.getUsername().isBlank()
                 || user.getEmail().isBlank() || user.getEmail().isEmpty()
@@ -19,15 +20,13 @@ public class AccountService {
         )
             throw new IllegalArgumentException("Invalid user data");
 
-
         if (accountRepository.findByEmail(user.getEmail()).isPresent())
-            return false;
+            throw new EmailAlreadyExistException("Email already exists");
 
         String hashedPassword = hashPassword(user.getPassword());
         user.setPassword(hashedPassword);
 
         accountRepository.save(user);
-        return true;
     }
 
 

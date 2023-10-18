@@ -1,6 +1,7 @@
 package com.youcode.garthergridjee.servlet;
 
 import com.youcode.garthergridjee.entities.User;
+import com.youcode.garthergridjee.exception.EmailAlreadyExistException;
 import com.youcode.garthergridjee.security.authentication.AccountService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -57,11 +58,12 @@ public class AuthenticationController extends HttpServlet {
         user.setCreatedAt(new java.util.Date());
         user.setUsername(user.getFirstName().charAt(0) + user.getLastName()); // username is the first letter of the first name and the last name
         try {
-            if(accountService.registerUser(user))
+            try {
+                accountService.registerUser(user);
                 req.setAttribute("success", "Your account has been created successfully");
-
-            else
+            } catch (EmailAlreadyExistException e) {
                 req.setAttribute("error", "Email already exist");
+            }
         } catch (IllegalArgumentException e) {
             req.setAttribute("error", e.getLocalizedMessage());
         }
