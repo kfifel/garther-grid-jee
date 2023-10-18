@@ -13,7 +13,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="catégorie">Category</a>
 <br>
 <a href="auth/login.do">login</a>
 </body>
