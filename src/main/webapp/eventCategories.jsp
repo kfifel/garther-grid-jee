@@ -8,36 +8,44 @@
 <html>
 <head>
     <title>Affichage des catégories d'événements</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<a href="form.jsp">ajouter</a>
-<h2>List des catégories d'événements</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Description</th>
-        <th>Date de création</th>
-        <th>Action</th>
-    </tr>
-
-
-    <c:forEach var="category" items="${requestScope.eventCategories}">
+<div class="container mt-4">
+    <a href="form.jsp" class="btn btn-primary mb-3">Ajouter</a>
+    <h2>Liste des catégories d'événements</h2>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <td>${category.id} </td>
-            <td>${category.name}</td>
-            <td>${category.description}</td>
-            <td><fmt:formatDate value="${category.createdAt}" pattern="dd-MM-yyyy"/></td>
-            <td>
-                <a href="editCategory.jsp?id=${category.id}&name=${category.name}&description=${category.description}&createdAt=${category.createdAt}">Modifier</a>
-                <form action="catégorie" method="DELETE">
-                    <input type="hidden" name="_method" value="PUT"><jsp:text />
-                    <input type="hidden" name="id" value="${category.id}"><jsp:text />
-                    <input type="submit" value="Supprimer">
-                </form>
-            </td>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Date de création</th>
+            <th>Action</th>
         </tr>
-    </c:forEach>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="category" items="${requestScope.eventCategories}">
+            <tr>
+                <td>${category.id}</td>
+                <td>${category.name}</td>
+                <td>${category.description}</td>
+                <td><fmt:formatDate value="${category.createdAt}" pattern="dd-MM-yyyy"/></td>
+                <td>
+                    <a href="editCategory.jsp?id=${category.id}&amp;name=${category.name}&amp;description=${category.description}&amp;createdAt=${category.createdAt}" class="btn btn-primary">Modifier</a>
+                    <form action="catégorie" method="POST" style="display: inline;">
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <input type="hidden" name="id" value="${category.id}"/>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

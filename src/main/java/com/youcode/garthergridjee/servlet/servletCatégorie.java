@@ -22,6 +22,7 @@ public class servletCatégorie extends HttpServlet {
             return;
         }else if(methode.equals("DELETE")){
             doDelete(request,response);
+            return;
         }
         String name = request.getParameter("name");
         String description = request.getParameter("description");

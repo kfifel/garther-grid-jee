@@ -37,7 +37,7 @@ public class EventCategoryService {
 
     }
     private boolean isValidName(String name) {
-        return name.matches("^[a-zA-Z]*$");
+        return name!= null && !name.isEmpty();
     }
 
     private boolean validateDescription(String description) {

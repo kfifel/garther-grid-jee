@@ -13,8 +13,9 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="catégorie">Category</a>
+<a href="list">Category</a>
 <br>
 <a href="auth/login.do">login</a>
+
 </body>
 </html>

@@ -17,7 +17,6 @@
 
 <div class="container">
     <h2>Formulaire d'enregistrement de catégorie d'événement</h2>
-    <%-- Ajout de la logique pour afficher le message de confirmation --%>
     <% if (request.getAttribute("confirmationMessage") != null) { %>
     <div id="confirmationMessage" class="alert alert-success" role="alert">
         <%= request.getAttribute("confirmationMessage") %>

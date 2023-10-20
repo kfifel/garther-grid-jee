@@ -4,6 +4,7 @@ import com.youcode.garthergridjee.entities.EventCategory;
 import com.youcode.garthergridjee.repository.EventCategoryInt;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
@@ -35,10 +36,12 @@ public class EventCategoryRepository implements EventCategoryInt {
     @Override
     public EventCategory findById(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EventCategory eventCategory = entityManager.find(EventCategory.class , id) ;
+        EventCategory eventCategory = entityManager.find(EventCategory.class, id);
         entityManager.close();
+
         return eventCategory;
     }
+
 
 
     @Override
@@ -54,19 +57,30 @@ public class EventCategoryRepository implements EventCategoryInt {
     @Override
     public void delete(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+        EntityTransaction transaction = null;
+        try {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
 
-        EventCategory eventCategory = findById(id);
-        if(eventCategory == null){
-            entityManager.getTransaction().rollback();
-            entityManager.close();
-            throw new IllegalArgumentException("ID does not exist");
+            EventCategory eventCategory = findById(id);
+            if (eventCategory == null) {
+                throw new IllegalArgumentException("ID does not exist");
+            }
+
+            entityManager.remove(eventCategory);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
-        entityManager.remove(eventCategory);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-
-
     }
+
+
 
 }
