@@ -16,5 +16,7 @@
 <a href="hello-servlet">Hello Servlet</a>
 <br>
 <a href="auth/login.do">login</a>
+<br>
+<a href="dashboard">dashboard</a>
 </body>
 </html>
