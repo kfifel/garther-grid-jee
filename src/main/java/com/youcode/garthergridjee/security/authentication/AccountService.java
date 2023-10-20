@@ -13,7 +13,12 @@ public class AccountService {
     }
 
     public void registerUser(User user) throws EmailAlreadyExistException {
+        validateUserDetails(user);
+        user.setPassword(hashPassword(user.getPassword()));
+        accountRepository.save(user);
+    }
 
+    private void validateUserDetails(User user) throws EmailAlreadyExistException {
         if (user.getUsername() == null || user.getUsername().isEmpty() || user.getUsername().isBlank()
                 || user.getEmail().isBlank() || user.getEmail().isEmpty()
                 || user.getPassword().isBlank() || user.getPassword().isEmpty() || user.getPassword().length() < 6
@@ -23,10 +28,6 @@ public class AccountService {
         if (accountRepository.findByEmail(user.getEmail()).isPresent())
             throw new EmailAlreadyExistException("Email already exists");
 
-        String hashedPassword = hashPassword(user.getPassword());
-        user.setPassword(hashedPassword);
-
-        accountRepository.save(user);
     }
 
 
@@ -42,6 +43,5 @@ public class AccountService {
             }
         }
         return Optional.empty();
-
     }
 }

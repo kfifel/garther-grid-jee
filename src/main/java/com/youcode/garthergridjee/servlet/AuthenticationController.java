@@ -4,6 +4,7 @@ import com.youcode.garthergridjee.entities.User;
 import com.youcode.garthergridjee.exception.EmailAlreadyExistException;
 import com.youcode.garthergridjee.security.authentication.AccountService;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,6 +13,8 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+
+@WebServlet("/auth/*")
 public class AuthenticationController extends HttpServlet {
     private final AccountService accountService = new AccountService();
     @Override
@@ -79,9 +82,7 @@ public class AuthenticationController extends HttpServlet {
         if(optionalUser.isPresent()) {
             req.getSession(true).setAttribute("user", optionalUser.get());
             req.setAttribute("success", "You are logged in successfully");
-            getServletContext()
-                    .getRequestDispatcher("/WEB-INF/views/home.jsp")
-                    .forward(req, resp);
+            resp.sendRedirect(req.getContextPath()+"/home?success=" + req.getAttribute("success"));
         } else {
             req.setAttribute("error", "Invalid credentials");
             //resp.sendRedirect(req.getContextPath()+"/auth/login.php");
