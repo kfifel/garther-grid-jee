@@ -19,11 +19,19 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private Date createdAt;
 
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
+
+
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
     public User(String username, String password, String firstName, String lastName, String email, Date createdAt) {
         this.username = username;
