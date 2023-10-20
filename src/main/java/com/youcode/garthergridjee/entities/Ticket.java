@@ -10,18 +10,25 @@ import java.util.Date;
 @Getter @Setter @NoArgsConstructor @ToString
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double price;
     private int quantityAvailable;
+
     @Enumerated(EnumType.STRING)
     private TicketType ticketType;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
+
     private Date createdAt;
 
-    public Ticket(double price, int quantityAvailable, TicketType ticketType, Date createdAt) {
+    public Ticket(double price, int quantityAvailable, TicketType ticketType, Date createdAt, Event event) {
         this.price = price;
         this.quantityAvailable = quantityAvailable;
         this.ticketType = ticketType;
         this.createdAt = createdAt;
+        this.event = event;
     }
 }
