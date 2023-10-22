@@ -17,14 +17,14 @@ package com.youcode.garthergridjee.security;
     import jakarta.servlet.http.HttpSession;
 
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     private HttpServletRequest httpRequest;
     private HttpServletResponse httpResponse;
 
     private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/auth/", "/auth/login.php",
-            "/auth/logout.php", "/auth/logup.php");
+            "assets/", "/auth/logout.php", "/auth/logup.php");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
