@@ -12,8 +12,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<<<<<<< HEAD
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
+=======
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+>>>>>>> a57162f3b6debae7db8a882eb62de70f68e5ab9f
         <junit.version>5.9.2</junit.version>
     </properties>
 
@@ -40,17 +45,24 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.1.0</version>
         </dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a57162f3b6debae7db8a882eb62de70f68e5ab9f
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.28</version>
         </dependency>
         <dependency>
+<<<<<<< HEAD
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>2.0.0</version>
         </dependency>
         <dependency>
+=======
+>>>>>>> a57162f3b6debae7db8a882eb62de70f68e5ab9f
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
@@ -69,10 +81,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+<<<<<<< HEAD
             </plugin>
         </plugins>
     </build>
 
 
 
+=======
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+>>>>>>> a57162f3b6debae7db8a882eb62de70f68e5ab9f
 </project>

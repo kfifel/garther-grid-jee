@@ -1,8 +1,10 @@
+<<<<<<< HEAD
 <%@ page import="com.youcode.garthergridjee.service.EventService" %>
 <%@ page import="com.youcode.garthergridjee.repository.EventRepository" %>
 <%@ page import="com.youcode.garthergridjee.repository.implementation.EventRepositoryImp" %>
 <%@ page import="com.youcode.garthergridjee.entities.Event" %>
 <%@ page import="java.util.List" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -17,5 +19,6 @@
 <br>
 <a href="auth/login.do">login</a>
 
+<a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>

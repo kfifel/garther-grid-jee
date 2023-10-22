@@ -1,5 +1,6 @@
 package com.youcode.garthergridjee;
 
+
 import com.youcode.garthergridjee.entities.EventCategory;
 import com.youcode.garthergridjee.service.EventCategoryService;
 import jakarta.servlet.ServletException;
@@ -8,11 +9,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+
+import java.io.IOException;
+
+@WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
     private String message;
 
@@ -22,8 +25,7 @@ public class HelloServlet extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException {
     }
 
     public void destroy() {

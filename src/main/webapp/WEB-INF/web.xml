@@ -20,4 +20,18 @@
         <url-pattern>/hello-servlet</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>com.youcode.garthergridjee.config.DatabaseInit</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>InitializeDatabase</servlet-name>
+        <servlet-class>com.youcode.garthergridjee.config.DatabaseInit</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitializeDatabase</servlet-name>
+        <url-pattern>/InitializeDatabase</url-pattern>
+>>>>>>> a57162f3b6debae7db8a882eb62de70f68e5ab9f
+    </servlet-mapping>
+
 </web-app>
