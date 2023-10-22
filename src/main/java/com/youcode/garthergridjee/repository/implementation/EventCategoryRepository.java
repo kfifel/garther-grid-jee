@@ -9,6 +9,7 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class EventCategoryRepository implements EventCategoryInt {
     private final EntityManagerFactory entityManagerFactory;
