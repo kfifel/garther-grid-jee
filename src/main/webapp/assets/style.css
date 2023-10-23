@@ -145,7 +145,6 @@ form a:hover {
 }
 form input[type="submit"] {
   margin-top: 15px;
-  padding: none;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;

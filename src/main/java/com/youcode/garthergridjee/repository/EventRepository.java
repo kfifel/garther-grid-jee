@@ -4,7 +4,11 @@ import com.youcode.garthergridjee.entities.Event;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.transaction.Transactional;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventRepository {
     private final EntityManagerFactory entityManagerFactory;
@@ -13,13 +17,13 @@ public class EventRepository {
         entityManagerFactory = Persistence.createEntityManagerFactory("persistencejakartaee.grather_grid");
     }
 
-    public Long save(Event event) {
+    public Event save(Event event) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(event);
             entityManager.getTransaction().commit();
-            return event.getId();
+            return event;
         } finally {
             entityManager.close();
         }
@@ -36,11 +40,12 @@ public class EventRepository {
 
     public List<Event> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            return entityManager.createQuery("SELECT e FROM Event e", Event.class).getResultList();
-        } finally {
-            entityManager.close();
-        }
+        entityManager.getTransaction().begin();
+        List<Event> selectEFromEventE = entityManager.createQuery("SELECT e FROM Event e", Event.class)
+                .getResultStream().collect(Collectors.toList());
+        entityManager.getTransaction().commit();
+        return selectEFromEventE;
+
     }
 
     public void update(Event event) {

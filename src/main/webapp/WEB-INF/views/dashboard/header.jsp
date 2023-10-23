@@ -62,7 +62,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item <%= "listUsers".equals(activePage) ? "active" : "" %>">
-                            <a href="list-users.jsp" class="menu-link">
+                            <a href="users" class="menu-link">
                                 <div data-i18n="List Users">List Users</div>
                             </a>
                         </li>

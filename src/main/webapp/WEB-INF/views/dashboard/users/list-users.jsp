@@ -1,5 +1,3 @@
-<%@ page import="Entity.Category" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html
@@ -63,7 +61,7 @@
 </head>
 
 <body>
-      <jsp:include page="header.jsp">
+      <jsp:include page="../header.jsp">
         <jsp:param name="activePage" value="listUsers" />
       </jsp:include>
       <!-- Content wrapper -->
@@ -110,16 +108,29 @@
                       <tr>
                         <th></th>
                         <th></th>
-                        <th>id</th>
-                        <th>username</th>
                         <th>firstName</th>
                         <th>lastName</th>
                         <th>email</th>
-                        <th>createdAt</th>
                         <th>username</th>
+                        <th>createdAt</th>
                         <th aria-controls="DataTables_Table_0">Action</th>
                       </tr>
                       </thead>
+                      <tbody>
+                        <c:forEach var="user" items="${users}" >
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td>id</td>
+                            <td>${user.firstName}</td>
+                            <td>${user.lastName}</td>
+                            <td>${user.email}</td>
+                            <td>${user.username}</td>
+                            <td>${user.createdAt}</td>
+                            <td aria-controls="DataTables_Table_0">Action</td>
+                          </tr>
+                        </c:forEach>
+                      </tbody>
                     </table>
                   </div>
                 </div>
@@ -221,7 +232,7 @@
         </div>
         <!-- / Content -->
 
-        <%@include file="footer.jsp"%>
+        <%@include file="../footer.jsp"%>
 
         <div class="content-backdrop fade"></div>
       </div>
