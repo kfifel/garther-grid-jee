@@ -1,10 +1,15 @@
 package com.youcode.garthergridjee.config;
 
+import com.youcode.garthergridjee.entities.Role;
+import com.youcode.garthergridjee.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
+import org.mindrot.jbcrypt.BCrypt;
+
+import java.util.List;
 
 @WebServlet(value = "/db_init", loadOnStartup = 1)
 
@@ -18,9 +23,19 @@ public class DatabaseInit extends HttpServlet {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistencejakartaee.grather_grid");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
+        Role rAdmin = new Role("ROLE_ADMIN");
+        Role rOrganizer = new Role("ROLE_ORGANIZER");
+        Role rUser = new Role("ROLE_USER");
+        entityManager.persist(rAdmin);
+        entityManager.persist(rOrganizer);
+        entityManager.persist(rUser);
 
+        User admin = new User("admin",
+                BCrypt.hashpw("admin", BCrypt.gensalt()),
+                "admin", "admin","admin@gmail.com",
+                List.of(rAdmin, rOrganizer, rUser));
+
+        entityManager.persist(admin);
         entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
     }
 }

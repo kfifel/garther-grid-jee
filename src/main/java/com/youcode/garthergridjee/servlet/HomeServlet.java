@@ -8,10 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "HomeServlet", value = "/Home")
+@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
     @Override
-    public void init() throws ServletException {
+    public void init() {
         getServletContext().setAttribute("authenticated", false);
     }
 

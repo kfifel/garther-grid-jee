@@ -4,25 +4,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%@include file="shared/_header.jsp"%>
+
     <title>Login & Signup Form</title>
-    <link rel="stylesheet" href="<c:url value='../assets/style.css' />" />
 </head>
-<body>
+<body class="login-container">
+
+<jsp:include page="shared/_handleAlerts.jsp"/>
+
 <section class="wrapper active">
     <div class="form signup">
         <header>Signup</header>
-        <form action="auth/signup.do" method="post">
+        <form action="<c:url value='/auth/logup.php'/>" method="post">
+            <div class="flex">
+                <label>
+                    <input type="text" name="firstname" placeholder="First name" required />
+                </label>
+                <label>
+                    <input type="text" name="lastname" placeholder="Last name" required />
+                </label>
+            </div>
             <label>
-                <input type="text" placeholder="Full name" required />
+                <input type="text" name="email" placeholder="Email address" class="w-full" required />
             </label>
             <label>
-                <input type="text" placeholder="Email address" required />
-            </label>
-            <label>
-                <input type="password" placeholder="Password" required />
+                <input type="password" name="password" placeholder="Password" class="w-full" required />
             </label>
             <div class="checkbox">
                 <input type="checkbox" id="signupCheck" />
@@ -34,12 +40,12 @@
 
     <div class="form login">
         <header>Login</header>
-        <form action="auth/login.do" method="post">
+        <form action="<c:url value='/auth/login.php'/>" method="post">
             <label>
-                <input type="text" placeholder="Email address" required />
+                <input type="text" name="email" placeholder="Email address" class="w-full" required />
             </label>
             <label>
-                <input type="password" placeholder="Password" required />
+                <input type="password" name="password" placeholder="Password" class="w-full" required />
             </label>
             <a href="#">Forgot password?</a>
             <input type="submit" value="Login" />
