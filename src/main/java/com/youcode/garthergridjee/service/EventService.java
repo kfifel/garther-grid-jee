@@ -24,9 +24,7 @@ public class EventService {
     }
 
     public List<Event> getAllEvents() {
-        List<Event> events = eventRepository.getAll();
-        if(true) System.out.println("iaa");
-        return events;
+        return eventRepository.getAll();
     }
     public List<Ticket> getTicketsByEventId(Long eventId) {
         Event event = eventRepository.getById(eventId);

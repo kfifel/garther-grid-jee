@@ -4,9 +4,11 @@ import com.youcode.garthergridjee.entities.Event;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.transaction.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventRepository {
     private final EntityManagerFactory entityManagerFactory;
@@ -38,18 +40,12 @@ public class EventRepository {
 
     public List<Event> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        try {
-            List<Event> events = entityManager.createQuery("SELECT e FROM Event e", Event.class)
-                    .getResultList();
-            return events;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }
-        }
+        entityManager.getTransaction().begin();
+        List<Event> selectEFromEventE = entityManager.createQuery("SELECT e FROM Event e", Event.class)
+                .getResultStream().collect(Collectors.toList());
+        entityManager.getTransaction().commit();
+        return selectEFromEventE;
+
     }
 
     public void update(Event event) {
