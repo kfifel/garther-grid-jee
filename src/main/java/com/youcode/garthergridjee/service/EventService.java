@@ -15,9 +15,8 @@ public class EventService {
         eventRepository = new EventRepository();
     }
 
-    public Long createEvent(Event event) {
-        Long eventId = eventRepository.save(event); // Get the ID of the saved event
-        return eventId;
+    public Event createEvent(Event event) {
+        return eventRepository.save(event);
     }
 
     public Event getEventById(Long id) {
@@ -25,7 +24,9 @@ public class EventService {
     }
 
     public List<Event> getAllEvents() {
-        return eventRepository.getAll();
+        List<Event> events = eventRepository.getAll();
+        if(true) System.out.println("iaa");
+        return events;
     }
     public List<Ticket> getTicketsByEventId(Long eventId) {
         Event event = eventRepository.getById(eventId);

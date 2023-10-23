@@ -70,9 +70,8 @@ public class EventServlet extends HttpServlet {
 
         if ("create".equals(action)) {
             Event newEvent = createEventFromRequest(request);
-            Long eventId = eventService.createEvent(newEvent);
 
-            Event event = eventService.getEventById(eventId);
+            Event event = eventService.createEvent(newEvent);;
 
             List<Ticket> newTickets = createTicketsFromRequest(request, event);
 
