@@ -15,9 +15,8 @@ public class EventService {
         eventRepository = new EventRepository();
     }
 
-    public Long createEvent(Event event) {
-        Long eventId = eventRepository.save(event); // Get the ID of the saved event
-        return eventId;
+    public Event createEvent(Event event) {
+        return eventRepository.save(event);
     }
 
     public Event getEventById(Long id) {

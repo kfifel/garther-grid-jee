@@ -10,6 +10,6 @@ import java.io.IOException;
 @WebServlet("/account-settings")
 public class AccountSettingsServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("pages-account-settings-account.jsp");
+        request.getRequestDispatcher("/WEB-INF/views/dashboard/pages-account-settings-account.jsp");
     }
 }
