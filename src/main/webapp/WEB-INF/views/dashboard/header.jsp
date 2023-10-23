@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String activePage = request.getParameter("activePage");
 %>
@@ -177,7 +178,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="auth-login-cover.jsp" target="_blank">
+                                    <a class="dropdown-item" href="<c:url value='/auth/logout.php'/>">
                                         <i class="ti ti-logout me-2 ti-sm"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
@@ -198,5 +199,6 @@
                     <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
                 </div>
             </nav>
-
-            <!-- / Navbar -->
+        </div>
+    </div>
+</div>

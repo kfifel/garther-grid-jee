@@ -39,7 +39,7 @@ public class EventServlet extends HttpServlet {
         if (action == null) {
             List<Event> events = eventService.getAllEvents();
             request.setAttribute("events", events);
-            request.getRequestDispatcher("/list-events.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/dashboard/list-events.jsp").forward(request, response);
         } else if (action.equals("edit")) {
             Long eventId = Long.parseLong(request.getParameter("id"));
 
@@ -52,7 +52,7 @@ public class EventServlet extends HttpServlet {
             request.setAttribute("event", event);
             request.setAttribute("tickets", tickets);
             request.setAttribute("categories", categories);
-            request.getRequestDispatcher("/event-form.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/dashboard/event-form.jsp").forward(request, response);
         } else if (action.equals("delete")) {
             Long eventId = Long.parseLong(request.getParameter("id"));
             eventService.deleteEvent(eventId);
@@ -62,7 +62,7 @@ public class EventServlet extends HttpServlet {
             request.setAttribute("categories", categories);
             TicketType[] ticketTypes = TicketType.values();
             request.setAttribute("ticketTypes",ticketTypes);
-            request.getRequestDispatcher("/event-form.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/dashboard/event-form.jsp").forward(request, response);
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

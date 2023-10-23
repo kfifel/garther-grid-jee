@@ -1,30 +1,30 @@
 package com.youcode.garthergridjee.security;
 
-    import java.io.IOException;
-    import java.util.Arrays;
-    import java.util.List;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
-    import com.youcode.garthergridjee.entities.User;
+import com.youcode.garthergridjee.entities.User;
 
-    import jakarta.servlet.Filter;
-    import jakarta.servlet.FilterChain;
-    import jakarta.servlet.ServletException;
-    import jakarta.servlet.ServletRequest;
-    import jakarta.servlet.ServletResponse;
-    import jakarta.servlet.annotation.WebFilter;
-    import jakarta.servlet.http.HttpServletRequest;
-    import jakarta.servlet.http.HttpServletResponse;
-    import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     private HttpServletRequest httpRequest;
     private HttpServletResponse httpResponse;
 
-    private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/auth/", "/auth/login.php",
-            "assets/", "/auth/logout.php", "/auth/logup.php");
+    private final List<String> reachablePathsWithoutAuthentication = Arrays.asList("/auth/login.php",
+            "assets/" , "/auth/logup.php");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
