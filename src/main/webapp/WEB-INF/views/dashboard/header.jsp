@@ -199,6 +199,3 @@
                     <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
                 </div>
             </nav>
-        </div>
-    </div>
-</div>
