@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
-@WebFilter("/*")
+//@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     private HttpServletRequest httpRequest;
