@@ -13,7 +13,7 @@ import java.util.List;
 @ToString
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
@@ -33,12 +33,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-    public User(String username, String password, String firstName, String lastName, String email, Date createdAt) {
+    public User(String username, String password, String firstName, String lastName, String email, List<Role> roles) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.createdAt = createdAt;
+        this.roles = roles;
     }
 }

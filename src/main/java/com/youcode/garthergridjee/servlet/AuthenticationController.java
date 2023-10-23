@@ -82,7 +82,7 @@ public class AuthenticationController extends HttpServlet {
         if(optionalUser.isPresent()) {
             req.getSession(true).setAttribute("user", optionalUser.get());
             req.setAttribute("success", "You are logged in successfully");
-            resp.sendRedirect(req.getContextPath()+"/home?success=" + req.getAttribute("success"));
+            resp.sendRedirect(req.getContextPath()+"/dashboard");
         } else {
             req.setAttribute("error", "Invalid credentials");
             //resp.sendRedirect(req.getContextPath()+"/auth/login.php");

@@ -8,11 +8,14 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/shared/_handleAlerts.jsp"/>
-
-    <h1><%= "Hello World!" %></h1>
+    <h1><%= "Hello World!" %>
+    </h1>
     <br/>
     <a href="hello-servlet">Hello Servlet</a>
-    <br><br>
-    <a href="auth/login.php">login</a></body>
+    <br>
+    <a href="auth/login.php">login</a>
+    <br>
+    <a href="dashboard">dashboard</a>
+    <jsp:include page="/WEB-INF/views/shared/_handleAlerts.jsp"/>
+
 </html>
