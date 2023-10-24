@@ -10,33 +10,7 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
                 <a href="dashboard" class="app-brand-link">
-              <span class="app-brand-logo demo">
-                <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
-                          fill="#7367F0" />
-                  <path
-                          opacity="0.06"
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
-                          fill="#161616" />
-                  <path
-                          opacity="0.06"
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
-                          fill="#161616" />
-                  <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
-                          fill="#7367F0" />
-                </svg>
-              </span>
-                    <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+                    <img src="<c:url value="/assets/homeAssets/images/GatherGrid.png"/>" alt class="img-fluid"/>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -50,7 +24,7 @@
             <ul class="menu-inner py-1">
                 <!-- Page -->
                 <li class="menu-item <%= "dashboard".equals(activePage) ? "active" : "" %>">
-                    <a href="/dashboard" class="menu-link">
+                    <a href="<c:url value="/dashboard"/>" class="menu-link">
                         <i class="menu-icon tf-icons ti ti-smart-home"></i>
                         <div data-i18n="dashboard">dashboard</div>
                     </a>
@@ -127,7 +101,8 @@
                     <!-- Search -->
                     <div class="navbar-nav align-items-center">
                         <div class="nav-item navbar-search-wrapper mb-0">
-                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                            <a class="nav-item nav-link search-toggler d-flex align-items-center px-0"
+                               href="javascript:void(0);">
                                 <i class="ti ti-search ti-md me-2"></i>
                                 <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
                             </a>
@@ -138,9 +113,10 @@
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                               data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
-                                    <img src="assets2/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                    <img src="assets2/img/avatars/1.png" alt class="h-auto rounded-circle"/>
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
@@ -149,7 +125,8 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="assets2/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                                                    <img src="assets2/img/avatars/1.png" alt
+                                                         class="h-auto rounded-circle"/>
                                                 </div>
                                             </div>
                                             <div class="flex-grow-1">
@@ -195,7 +172,7 @@
                             type="text"
                             class="form-control search-input container-xxl border-0"
                             placeholder="Search..."
-                            aria-label="Search..." />
+                            aria-label="Search..."/>
                     <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
                 </div>
             </nav>

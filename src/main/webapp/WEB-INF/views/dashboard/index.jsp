@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html
         lang="en"
         class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
@@ -19,12 +20,12 @@
           name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Dashboard - eCommerce | Vuexy - Bootstrap Admin Template</title>
+  <title>Dashboard | GatherGrid</title>
 
   <meta name="description" content="" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets2/img/favicon/favicon.ico" />
+  <!-- Favicon Icon -->
+  <link rel="icon" type="image/ico" href="<c:url value="/assets/homeAssets/images/logo.ico" />">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

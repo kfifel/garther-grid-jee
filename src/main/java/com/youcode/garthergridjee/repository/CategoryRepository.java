@@ -27,7 +27,10 @@ public class CategoryRepository {
     public Category getById(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.find(Category.class, id);
+            entityManager.getTransaction().begin();
+            Category category = entityManager.find(Category.class, id);
+            entityManager.getTransaction().commit();
+            return category;
         } finally {
             entityManager.close();
         }
@@ -36,7 +39,10 @@ public class CategoryRepository {
     public List<Category> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.createQuery("SELECT c FROM Category c", Category.class).getResultList();
+            entityManager.getTransaction().begin();
+            List<Category> selectCFromCategoryC = entityManager.createQuery("SELECT c FROM Category c", Category.class).getResultList();
+            entityManager.getTransaction().commit();
+            return selectCFromCategoryC;
         } finally {
             entityManager.close();
         }

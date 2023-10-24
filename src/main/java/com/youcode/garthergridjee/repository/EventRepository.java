@@ -32,7 +32,10 @@ public class EventRepository {
     public Event getById(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.find(Event.class, id);
+            entityManager.getTransaction().begin();
+            Event event = entityManager.find(Event.class, id);
+            entityManager.getTransaction().commit();
+            return event;
         } finally {
             entityManager.close();
         }

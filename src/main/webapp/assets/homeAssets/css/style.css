@@ -591,8 +591,8 @@ body {
 
 .offcanvas-create-btn:hover {
     color: #fff !important;
-    background: #7ad254;
-    border: 2px solid #7ad254;
+    background: var(--second);
+    border: 2px solid var(--second);
 }
 
 .offcanvas-footer {

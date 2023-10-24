@@ -107,7 +107,7 @@
                       <thead>
                       <tr>
                         <th></th>
-                        <th></th>
+
                         <th>id</th>
                         <th>Name</th>
                         <th>Description</th>
@@ -115,14 +115,13 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>category</th>
-                        <th></th>
                         <th aria-controls="DataTables_Table_0">Action</th>
+                        <th></th>
                       </tr>
                       </thead>
                       <tbody>
                       <c:forEach items="${events}" var="event">
                         <tr>
-                          <td></td>
                           <td></td>
                           <td><c:out value="${event.id}" /></td>
                           <td><c:out value="${event.name}" /></td>
@@ -150,6 +149,7 @@
                               </div>
                             </div>
                           </td>
+                          <td></td>
                         </tr>
                       </c:forEach>
 

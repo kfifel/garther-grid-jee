@@ -27,7 +27,10 @@ public class TicketRepository {
     public Ticket getById(Long id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.find(Ticket.class, id);
+            entityManager.getTransaction().begin();
+            Ticket ticket = entityManager.find(Ticket.class, id);
+            entityManager.getTransaction().commit();
+            return ticket;
         } finally {
             entityManager.close();
         }
@@ -36,7 +39,8 @@ public class TicketRepository {
     public List<Ticket> getAll() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.createQuery("SELECT t FROM Ticket t", Ticket.class).getResultList();
+            List<Ticket> selectTFromTicketT = entityManager.createQuery("SELECT t FROM Ticket t", Ticket.class).getResultList();
+            return selectTFromTicketT;
         } finally {
             entityManager.close();
         }
