@@ -5,11 +5,15 @@ import com.youcode.garthergridjee.entities.Event;
 import com.youcode.garthergridjee.entities.Ticket;
 import com.youcode.garthergridjee.repository.EventRepository;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EventService {
     private final EventRepository eventRepository;
+    TicketService ticketService = new TicketService();
+
 
     public EventService() {
         eventRepository = new EventRepository();

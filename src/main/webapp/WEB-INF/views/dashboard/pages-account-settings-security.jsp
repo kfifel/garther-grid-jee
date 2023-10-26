@@ -87,7 +87,7 @@
                             <div class="card mb-4">
                                 <h5 class="card-header">Change Password</h5>
                                 <div class="card-body">
-                                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                                    <form method="POST" action="<c:url value="/account-security"/>">
                                         <div class="row">
                                             <div class="mb-3 col-md-6 form-password-toggle">
                                                 <label class="form-label" for="currentPassword">Current Password</label>

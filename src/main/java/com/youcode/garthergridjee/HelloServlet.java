@@ -1,6 +1,8 @@
 package com.youcode.garthergridjee;
 
 import java.io.*;
+import java.util.List;
+import java.util.stream.Stream;
 
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -17,7 +19,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/json");
 
         // Hello
         PrintWriter out = response.getWriter();

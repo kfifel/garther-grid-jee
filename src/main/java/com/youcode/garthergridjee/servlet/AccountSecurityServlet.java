@@ -2,14 +2,24 @@ package com.youcode.garthergridjee.servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jdk.dynalink.linker.LinkerServices;
 
 import java.io.IOException;
 
 @WebServlet("/account-security")
-public class AccountSecurityServlet {
+public class AccountSecurityServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("pages-account-security-account.jsp");
+        request.getRequestDispatcher("/WEB-INF/views/dashboard/pages-account-settings-security.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+        request.setAttribute("success", "");
+        request.getRequestDispatcher("/WEB-INF/views/dashboard/pages-account-settings-security.jsp").forward(request, response);
     }
 }
