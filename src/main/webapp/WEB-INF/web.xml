@@ -4,17 +4,4 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
-    <listener>
-        <listener-class>com.youcode.garthergridjee.config.DatabaseInit</listener-class>
-    </listener>
-    <servlet>
-        <servlet-name>InitializeDatabase</servlet-name>
-        <servlet-class>com.youcode.garthergridjee.config.DatabaseInit</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>InitializeDatabase</servlet-name>
-        <url-pattern>/InitializeDatabase</url-pattern>
-    </servlet-mapping>
-
 </web-app>
