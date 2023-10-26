@@ -8,8 +8,11 @@ import java.util.Optional;
 
 public class AccountService {
     private final AccountRepository accountRepository;
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
     public AccountService() {
-        accountRepository = new AccountRepository();
+        this.accountRepository = new AccountRepository();
     }
 
     public void registerUser(User user) throws EmailAlreadyExistException {
@@ -36,7 +39,7 @@ public class AccountService {
     }
 
     public Optional<User> login(String email, String password) {
-        Optional<User> user = accountRepository.findByEmail(email);
+        Optional<User> user = accountRepository.findByEmail(email.trim());
         if(user.isPresent()) {
             if(BCrypt.checkpw(password, user.get().getPassword())) {
                 return user;
