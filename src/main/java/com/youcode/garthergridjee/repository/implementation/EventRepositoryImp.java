@@ -9,7 +9,7 @@ import jakarta.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
 
-public class EventRepositoryImp implements EventRepository {
+public class EventRepositoryImp {
     private final EntityManagerFactory managerFactory;
 
     public EventRepositoryImp() {

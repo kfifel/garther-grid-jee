@@ -5,11 +5,11 @@ import com.youcode.garthergridjee.repository.EventRepository;
 import com.youcode.garthergridjee.repository.implementation.EventRepositoryImp;
 import com.youcode.garthergridjee.service.EventService;
 
-public class EventServiceImp implements EventService {
+public class EventServiceImp {
     private final EventRepository eventRepository;
 
     public EventServiceImp() {
-        eventRepository = new EventRepositoryImp();
+        eventRepository = new EventRepository();
     }
 
     public void save(Event event) {

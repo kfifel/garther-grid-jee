@@ -12,11 +12,52 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @ToString
 public class Event {
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,5 +100,53 @@ public class Event {
         this.description = description;
         this.createdAt =new Date();
         this.category = category;
+    }
+
+    public Event() {
+
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setOrganizer(String organizer) {
+        this.organizer = organizer;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
